@@ -1,0 +1,11 @@
+rent: 3448
+food: 2500
+christmas: 2500
+raves: 1500
+alcohol: 1000
+mobile: 520
+ruter: 442
+laundry: 250
+train: 200
+gym: 175
+netflix: 109

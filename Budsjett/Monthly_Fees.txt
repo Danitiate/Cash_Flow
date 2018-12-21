@@ -1,0 +1,5 @@
+rent: 3448
+ruter: 442
+netflix: 109
+mobile: 520
+gym: 175
