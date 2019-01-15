@@ -1,3 +1,12 @@
+# This file contains all the monthly fees.
+# Changing this will cause the program to crash.
+# Make sure you follow this rule if you want to add more categories directly:
+# <name>: <value>
+# Including the space
+#
+# This is used to make logging faster on the start of every month.
+# Type -M og -m in the transaction menu to log all the monthly fees.
+
 rent: 3448
 ruter: 442
 netflix: 109

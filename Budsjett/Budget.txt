@@ -1,6 +1,11 @@
+# This file contains the budget for the current month.
+# Changing this will cause the program to crash.
+# Make sure you follow this rule if you want to add more categories directly:
+# <name>: <value>
+# Including the space
+
 rent: 3448
 food: 2500
-christmas: 2500
 raves: 1500
 alcohol: 1000
 mobile: 520

@@ -9,4 +9,11 @@ class Date{
                             "November", "December"};
     return monthNames[m];
   }
+
+
+  public static int get_year(){
+    Calendar cal = Calendar.getInstance();
+    int year = cal.get(Calendar.YEAR);
+    return year;
+  }
 }

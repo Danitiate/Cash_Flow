@@ -8,10 +8,19 @@ class Budget{
   public static void main(String[] args) {
     //Sets values
     HashMap values = new HashMap<String, Integer>();
+    HashMap discount = new HashMap<String, Integer>();
     try{
-      values = File_Reader.get_values();
+      values = File_Reader.get_values("Cash_Flow_" + Date.get_month() + Date.get_year() + ".txt");
+      discount = File_Reader.get_values("Cash_Flow_Discount" + Date.get_year() + ".txt");
     }catch (FileNotFoundException e){
-      System.out.println(e);
+      System.out.println("No file found!\nCreating new files...\n");
+      try{
+        File_Reader.read_to_file();
+        System.out.println("File creation complete!\nRestarting program...\n");
+        main(null);
+      }catch(IOException f){
+        System.out.println(f);
+      }
       System.exit(0);
     }
 
