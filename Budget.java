@@ -4,14 +4,18 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**The main class. Every class is controlled from here.
+ * Sets the values in the files into the File_Reader.
+ * User input is handled by the User_Interface class.
+ */
 class Budget{
   public static void main(String[] args) {
     //Sets values
     HashMap values = new HashMap<String, Integer>();
     HashMap discount = new HashMap<String, Integer>();
     try{
-      values = File_Reader.get_values("Cash_Flow_" + Date.get_month() + Date.get_year() + ".txt");
-      discount = File_Reader.get_values("Cash_Flow_Discount" + Date.get_year() + ".txt");
+      values = File_Reader.get_values("Files/Cash_Flow_" + Date.get_month() + Date.get_year() + ".txt");
+      discount = File_Reader.get_values("Files/Cash_Flow_Discount" + Date.get_year() + ".txt");
     }catch (FileNotFoundException e){
       System.out.println("No file found!\nCreating new files...\n");
       try{
@@ -33,7 +37,7 @@ class Budget{
       if (c.matches("\\d+")){
         User_Interface.menu(Integer.parseInt(c));
       }else{
-        User_Interface.menu(99);
+        System.out.println("Unkown input");
       }
     }
 

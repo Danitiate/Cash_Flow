@@ -1,5 +1,6 @@
 import java.util.Calendar;
 
+//Used to get the current month and year. Abstracted from the Calendar class.
 class Date{
   public static String get_month(){
     Calendar cal = Calendar.getInstance();

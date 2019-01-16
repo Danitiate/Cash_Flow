@@ -1,0 +1,24 @@
+# This file contains all transactions made.
+# Changing this will cause the program to crash.
+# Make sure you follow this rule if you want to add more categories directly:
+# <name>: <value>
+# Including the space
+
+raves: 495
+ruter: 442
+power Income: 5822
+mobile: 520
+staples Income: 8398
+Uncategorized: 55
+netflix: 109
+haircut: 299
+rent: 3448
+bowling: 492
+driver Income: 130
+food: 1214
+Andreas Income: 268
+driver: 400
+gym: 175
+uio: 840
+bursdag Income: 1100
+train: 75

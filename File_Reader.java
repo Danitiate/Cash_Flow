@@ -6,7 +6,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
-
+/**Controls everything that has to do with files.
+ * This class is static, so it doesn't need to be initialized.
+ * Uses the files in the /Files/ folder to read user data.
+ * All data stored in Cash_Flow.txt is stored in the "values" hashmap, and
+ * all data stored in Cash_Flow_Discount.txt is stored in the "discount" hashmap.
+ */
 class File_Reader{
   static HashMap values = new HashMap<String, Integer>();
   static HashMap discount = new HashMap<String, Integer>();
@@ -63,19 +68,7 @@ class File_Reader{
    * @param String s: The key / Store name
    * @param int i: The value of this category
   **/
-  public static void add_value_discount(String s, int original){
-    Scanner in = new Scanner(System.in);
-    System.out.print("What did you pay? ");
-    String input = in.nextLine();
-
-    int disc = 0; //Registers money spent
-    if (input.matches("\\d+")){
-      disc = Integer.parseInt(input);
-    }else{
-      System.out.println("Unkown input");
-      return;
-    }
-
+  public static void add_value_discount(String s, int original, int disc){
     int val = 0; //Logs money spent
     if (discount.get(s) != null){
       val = (Integer)discount.get(s);
@@ -83,17 +76,18 @@ class File_Reader{
     discount.put(s, (disc+val));
 
     double taxes = 0; //Checks if you have to tax the discount
+    int saved = original - disc;
     if(disc < (original/2)){
-      taxes = disc*0.38;
+      taxes = saved*0.38;
     }
 
-    disc = original - disc; //Logs the money saved
+    //Logs the money saved
     s += " Discount";
     val = 0;
     if (discount.get(s) != null){
       val = (Integer)discount.get(s);
     }
-    discount.put(s, (disc+val));
+    discount.put(s, (saved+val));
 
     val = 0; //Logs the taxes that must be paid
     if (discount.get("Taxes") != null){
@@ -124,7 +118,7 @@ class File_Reader{
    * Overwrites the current Cash_Flow.txt with the new values, if any.
   **/
   public static void read_to_file() throws IOException{
-    String filename = "Cash_Flow_" + Date.get_month() + Date.get_year() + ".txt";
+    String filename = "Files/Cash_Flow_" + Date.get_month() + Date.get_year() + ".txt";
     FileWriter fileWriter = new FileWriter(filename);
     fileWriter.write("# This file contains all transactions made.\n"
                     +"# Changing this will cause the program to crash.\n"
@@ -138,11 +132,11 @@ class File_Reader{
     }
     fileWriter.close();
 
-    filename = "Cash_Flow_Discount" + Date.get_year() + ".txt";
+    filename = "Files/Cash_Flow_Discount" + Date.get_year() + ".txt";
     FileWriter fileWriter2 = new FileWriter(filename);
     fileWriter2.write("# This file contains all employee discount transactions made.\n"
                      +"# Changing this will cause the program to crash.\n"
-                     +"# Make sure you follow this rule if you want to add"
+                     +"# Make sure you follow this rule if you want to add "
                      +"more categories directly:\n"
                      +"# <name>: <value>\n# Including the space\n#\n"
                      +"# Taxes is a special case and shows the total amount of"
@@ -202,19 +196,18 @@ class File_Reader{
   }
 
 
-  public static void show_budget_discount(String filename) throws FileNotFoundException{
-    HashMap budget = get_values(filename);
-    String[] out = new String[(budget.size()-1)/2];
+  public static void show_budget_discount(){
+    String[] out = new String[(discount.size()-1)/2];
 
     System.out.println("STORE\tSPENT\tSAVED");
     int i = 0;
-    for(Object val : budget.keySet()){
+    for(Object val : discount.keySet()){
       String key = val+"";
       if(key.equals("Taxes")){
         continue;
       }
       if(!key.contains(" Discount")){
-        out[i] = key+"\t"+budget.get(key)+"\t"+budget.get(key+" Discount");
+        out[i] = key+"\t"+discount.get(key)+"\t"+discount.get(key+" Discount");
         i++;
       }
     }
@@ -223,7 +216,7 @@ class File_Reader{
       System.out.println(out[i]);
     }
 
-    System.out.println("\n\u001B[31mTOTAL TAXES:\t"+budget.get("Taxes"));
+    System.out.println("\n\u001B[31mTOTAL TAXES:\t"+discount.get("Taxes"));
     System.out.print("\u001B[0m");
   }
 }

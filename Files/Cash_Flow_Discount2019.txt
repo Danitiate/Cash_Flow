@@ -1,8 +1,9 @@
 # This file contains all employee discount transactions made.
 # Changing this will cause the program to crash.
-# Make sure you follow this rule if you want to addmore categories directly:
+# Make sure you follow this rule if you want to add more categories directly:
 # <name>: <value>
 # Including the space
 #
 # Taxes is a special case and shows the total amount oftaxes that needs to be paid.
 
+Taxes: 0

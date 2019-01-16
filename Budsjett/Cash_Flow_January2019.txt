@@ -1,6 +1,0 @@
-# This file contains all transactions made.
-# Changing this will cause the program to crash.
-# Make sure you follow this rule if you want to add more categories directly:
-# <name>: <value>
-# Including the space
-
